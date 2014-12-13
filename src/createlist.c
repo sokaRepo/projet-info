@@ -13,7 +13,7 @@ float genRandNb() {
 	return (float)(rand() % 10);
 }
 
-void createComplexPoly(dev *pl)
+void createComplexPoly(dev *pl, int nb)
 {
 	int i=0;
 	time_t t;
@@ -25,16 +25,16 @@ void createComplexPoly(dev *pl)
 	//printf("BEGIN creer 3\n");
 	dev queue=malloc(sizeof(developpe));
 	queue=l;
-	queue->pow=(rand() % 1);
-	queue->img = (float)(rand() % 1);
-	queue->real=(float)(rand() % 1);
+	queue->pow=(rand() % nb);
+	queue->img = (float)(rand() % 20);
+	queue->real=(float)(rand() % 20);
 	for (i=2; i<6; i++)
 	{
 		queue->next=malloc(sizeof(developpe));
 		queue=queue->next;
-		queue->pow=(rand() % 1);
-		queue->img=(float)(rand() % 1);
-		queue->real=(float)(rand() % 1);
+		queue->pow=(rand() % nb);
+		queue->img=(float)(rand() % 20);
+		queue->real=(float)(rand() % 20);
 		queue->next=NULL;
 	}
 	sleep(1);

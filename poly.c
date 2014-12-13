@@ -15,8 +15,8 @@ int main ()
 	dev poly1;
 	dev poly2;
 	dev poly3; // poly1 + poly2
-	createComplexPoly(&poly1);
-	createComplexPoly(&poly2);
+	createComplexPoly(&poly1, 10);
+	createComplexPoly(&poly2, 10);
 	printf("---------------------------\n");
 	red("Before operations");
 	printf("---------------------------\n");
@@ -48,7 +48,7 @@ int main ()
 
 	printf("----------------------------\n");
 	soustractPoly(poly1, poly2, &poly3);
-	red("Result poly add:");
+	red("Result poly soustr:");
 	printf("---------------------------\n");
 	printComplexPoly(poly3, 3);
 	/*

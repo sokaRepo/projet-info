@@ -172,36 +172,54 @@ void addPoly(dev poly1, dev poly2, dev * result) {
 	*result = polyResult;
 
 	while(poly1 && poly2) {
-		if(poly1->pow > poly2->pow) {
+
+		if(poly1->pow < poly2->pow) {
 			polyResult->pow = poly1->pow;
 			polyResult->img = poly1->img;
 			polyResult->real = poly1->real;
-			poly1 = polyResult->next;
+			poly1 = poly1->next;
 		}
-		else if(poly1->pow < poly2->pow) {
+		else if(poly1->pow > poly2->pow) {
 			polyResult->pow = poly2->pow;
-			polyResult->img = poly2->img;
-			polyResult->real = poly2->real;
-			poly2 = polyResult->next;	
+			polyResult->img = (poly2->img);
+			polyResult->real = (poly2->real);
+			poly2 = poly2->next;	
 		}
 		else {
 			polyResult->pow = poly1->pow;
-			if(poly1->img + poly2->img == 0)
-				polyResult = NULL;
-			else
-				polyResult->img = poly1->img + poly2->img;
+			polyResult->img = poly1->img + poly2->img;
 			polyResult->real = poly1->real + poly2->real;
 			poly1 = poly1->next;
 			poly2 = poly2->next;
 		}
-
 		if(poly1 && poly2) {
             polyResult = polyResult->next = malloc(sizeof(dev));
             polyResult->next = NULL;
         }
+
 	}
-	//printf("OK\n");
-	cleanNullMonomial(&polyResult);
+	if(poly1)
+		while(poly1) {
+			polyResult = polyResult->next = malloc(sizeof(dev));
+	        polyResult->next = NULL;
+			polyResult->pow = poly1->pow;
+			polyResult->img = poly1->img;
+			polyResult->real = poly1->real;
+			poly1 = poly1->next;
+		}
+	else
+		while(poly2) {
+			polyResult = polyResult->next = malloc(sizeof(dev));
+		    polyResult->next = NULL;
+			polyResult->pow = poly2->pow;
+			polyResult->img = poly2->img;
+			polyResult->real = poly2->real;
+			poly2 = poly2->next;
+		}
+	
+
+	//printComplexPoly(polyResult, 0);
+	//cleanNullMonomial(&(*result));
 
 	
 }
@@ -248,16 +266,16 @@ void soustractPoly(dev poly1, dev poly2, dev * result) {
 
 	while(poly1 && poly2) {
 
-		if(poly1->pow > poly2->pow) {
+		if(poly1->pow < poly2->pow) {
 			polyResult->pow = poly1->pow;
 			polyResult->img = poly1->img;
 			polyResult->real = poly1->real;
 			poly1 = poly1->next;
 		}
-		else if(poly1->pow < poly2->pow) {
+		else if(poly1->pow > poly2->pow) {
 			polyResult->pow = poly2->pow;
-			polyResult->img = poly2->img;
-			polyResult->real = poly2->real;
+			polyResult->img = -(poly2->img);
+			polyResult->real = -(poly2->real);
 			poly2 = poly2->next;	
 		}
 		else {
@@ -273,7 +291,28 @@ void soustractPoly(dev poly1, dev poly2, dev * result) {
         }
 
 	}
-	printComplexPoly(polyResult, 0);
+
+	if(poly1)
+		while(poly1) {
+			polyResult = polyResult->next = malloc(sizeof(dev));
+	        polyResult->next = NULL;
+			polyResult->pow = poly1->pow;
+			polyResult->img = poly1->img;
+			polyResult->real = poly1->real;
+			poly1 = poly1->next;
+		}
+	else
+		while(poly2) {
+			polyResult = polyResult->next = malloc(sizeof(dev));
+		    polyResult->next = NULL;
+			polyResult->pow = poly2->pow;
+			polyResult->img = -(poly2->img);
+			polyResult->real = -(poly2->real);
+			poly2 = poly2->next;
+		}
+
+
+	//printComplexPoly(polyResult, 0);
 	cleanNullMonomial(&(*result));
 	
 }

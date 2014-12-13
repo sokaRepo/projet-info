@@ -16,6 +16,21 @@ void printComplexPoly(dev l, int nb)
 
 	while (l != NULL)
 	{
+
+		
+		if(l->real > 0 && l->img > 0) 
+			printf ("(%lf + %lfi)Z^%d", l->real, l->img, l->pow);
+		else if(l->real < 0 && l->img < 0)
+			printf ("(%lf %lfi)Z^%d", l->real, l->img, l->pow);
+		else if(l->real > 0 && l->img < 0)
+			printf ("(%lf %lfi)Z^%d", l->real, l->img, l->pow);
+		else if(l->real < 0 && l->img > 0)
+			printf ("(%lf + %lfi)Z^%d", l->real, l->img, l->pow);
+		else
+			printf ("(%lf + %lfi)Z^%d", l->real, l->img, l->pow);
+		if(l->next) printf(" + ");
+		l=l->next;
+		/*
 		
 		if(l->next == NULL) {
 			printf ("(%lf - %lfi)Z^%d", l->real, l->img, l->pow);
@@ -24,6 +39,7 @@ void printComplexPoly(dev l, int nb)
 			printf ("(%lf - %lfi)Z^%d + ", l->real, l->img, l->pow);
 			l=l->next;
 		}
+		*/
 
 	}
 	printf("\n\n");
