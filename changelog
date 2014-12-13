@@ -1,0 +1,11 @@
+FAIT:
+
+- générer 2 polynômes aléatoires
+- trier les monomes d'un polynôme
+- additionner les monomes dont l'exposant est le même
+- supprimer les monomes nuls d'un polynome
+- opérations (addition, soustraction, multiplication)
+
+A FAIRE:
+
+- gérer la division

@@ -1,0 +1,9 @@
+Représenter les polys
+
+n = 5;
+
+struct {
+	int dx;
+	int dy;
+	int coeff[2*n][2*n]
+}
